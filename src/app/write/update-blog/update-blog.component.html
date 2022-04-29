@@ -1,0 +1,41 @@
+<nz-layout class="layout">
+    <div nz-row class="header" nzJustify="space-around" nzAlign="middle">
+            <button nz-col nzSpan="2" nz-button nzType="text" (click)="return();">
+                <i nz-icon nzType="left"></i>
+                返回
+            </button>
+        <div nz-col nzSpan="2"></div>
+        <div nz-col nzSpan="16">
+            <input nz-input type="text" placeholder="请输入文章标题" [(ngModel)]="blog.title" />
+        </div>
+        <div nz-col nzSpan="2"></div>
+        <div nz-col nzSpan="2">
+            <button nz-button nzShape="round" (click)="showModal()">
+                <i nz-icon nzType="upload" nzTheme="outline"></i>
+                发布博客
+            </button>
+        </div>
+    </div>
+<nz-content>
+    <div id="container">
+        <textarea nz-input [(ngModel)]="blog.text"></textarea>
+    </div>
+</nz-content>
+</nz-layout>
+
+<nz-modal
+      [(nzVisible)]="isVisible"
+      nzTitle="发布博客"
+      (nzOnCancel)="handleCancel()"
+      (nzOnOk)="updateBlog()"
+      [nzOkLoading]="isOkLoading"
+    >
+      <p *nzModalContent>
+          文章关键词
+        <input nz-input type="text" placeholder="请输入文章关键词" [(ngModel)]="blog.keyword" />
+        <br>
+        <br>
+        文章摘要
+        <input nz-input type="text" placeholder="请输入文章摘要" [(ngModel)]="blog.summary" />
+      </p>
+</nz-modal>

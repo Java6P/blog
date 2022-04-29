@@ -1,0 +1,41 @@
+    <nz-list nzItemLayout="vertical">
+        <nz-list-item *ngFor="let item of blogs">
+            <nz-list-item-meta>
+                <!-- <nz-avatar [nzSize]="27" nzText="{{item.uid}}" style="color:#f56a00; background-color:#fde3cf;"></nz-avatar> -->
+                <nz-list-item-meta-avatar nzSrc="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png">
+                </nz-list-item-meta-avatar>
+                <nz-list-item-meta-title>
+                    <a href="/blog/detail/{{ item.aid }}">{{ item.title }}</a>
+                </nz-list-item-meta-title>
+                <nz-list-item-meta-description>
+                    {{ item.keyword }}
+                </nz-list-item-meta-description>
+            </nz-list-item-meta>
+            <a class="link-text" href="/blog/detail/{{ item.aid }}">{{ item.summary }}</a>
+            <ul nz-list-item-actions>
+                <nz-list-item-action>
+                    <i nz-icon nzType="like" style="margin-right: 8px;"></i>
+                    <!-- <i nz-icon nzType="like" nzTheme="outline"></i> -->
+                    {{item.like_count}}
+                </nz-list-item-action>
+            </ul>
+            <nz-list-item-extra>
+                <!-- <img width="50%" alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" /> -->
+            </nz-list-item-extra>
+        </nz-list-item>
+    </nz-list>
+    <nz-affix [nzOffsetBottom]="120" style="position: absolute; right: 100px">
+        <button nz-button nzSize="large" nzType="primary" nzShape="circle" (click)="isVisible = true"><i nz-icon nzType="search"></i></button>
+    </nz-affix>
+
+    <nz-modal
+    [(nzVisible)]="isVisible"
+    nzTitle="搜索文章"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="findByTextBlog()"
+    [nzOkLoading]="isOkLoading"
+  >
+    <p *nzModalContent>
+      <input nz-input type="text" placeholder="请输入关键词" [(ngModel)]="word" />
+    </p>
+</nz-modal>

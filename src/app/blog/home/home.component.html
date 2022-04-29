@@ -1,0 +1,66 @@
+<main id="content-outer">
+    <div class="layout_page" id="content-inner">
+        <div class="aside_content" id="aside_content">
+            <div class="card-widget card-info">
+                <div class="card-content">
+                    <div class="card-info-avatar is-center">
+                        <img class="avatar-img"
+                            src="https://gitee.com/fyilin/pic/raw/master/202112281001791.png"
+                            alt="avatar">
+                        <div class="author-info__name">{{name}}</div>
+                        <div class="author-info__description">{{introduce}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-widget card-announcement">
+                <div class="card-content">
+                    <div class="item-headline">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <span>今天是{{date}}<br>欢迎 {{name}} 登录博客</span>
+                    </div>
+                    <div id="jinrishici-sentence"></div>
+                </div>
+            </div>
+
+            <div class="card-widget card-webinfo">
+                <div class="card-content">
+                    <div class="item-headline">
+                        <i class="fa fa-line-chart" aria-hidden="true"></i>
+                        <span>站点信息</span>
+                    </div>
+                    <div class="webinfo">
+                        <div class="webinfo-item">
+                            <div class="webinfo-site-uv-name">我的粉丝数 : {{fans}}</div>
+                            <div class="webinfo-site-uv-count" ></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <article id="page">
+            <div class="article-container">
+                <ul nz-list class="top" [nzDataSource]="blogs" nzBordered nzSize="large">
+                <nz-list-header> {{name}} 的博客列表</nz-list-header>
+                <li nz-list-item *ngFor="let item of blogs" nzNoFlex>
+                    <ul nz-list-item-actions>
+                    <nz-list-item-action>
+                        <a href="/write/update/{{ item.aid }}">修改</a>
+                        <nz-divider nzType="vertical"></nz-divider>
+                        <a href="/blog/detail/{{ item.aid }}">查看</a>
+                        <nz-divider nzType="vertical"></nz-divider>
+                        <a 
+                        nz-popconfirm
+                        nzPopconfirmTitle="确认删除博客吗?"
+                        nzPopconfirmPlacement="bottom"
+                        (nzOnConfirm)="del(item)"
+                        (nzOnCancel)="cancel()"
+                        >删除</a>
+                    </nz-list-item-action>
+                    </ul>
+                    {{ item.title }}
+                </li>
+                </ul>
+            </div>
+        </article>
+    </div>
+</main>
